@@ -19,7 +19,7 @@ public class Biblioteca {
         if (titulo == null) return false;
         String t = titulo.trim().toLowerCase();
         for (Libro l : libros) {
-            if (t.getTitulo() != null && t.getTitulo().trim().toLowerCase().equals(t))
+            if (l.getTitulo() != null && l.getTitulo().trim().toLowerCase().equals(t))
                 return true;
         }
         return false;
@@ -69,7 +69,7 @@ public class Biblioteca {
         return false;
     }
 
-    public void listarLIbros() {
+    public void listarLibros() {
         System.out.println("=== Libros ===");
         Iterator<Libro> it = libros.iterator();
         while (it.hasNext()) {
