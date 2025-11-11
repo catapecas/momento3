@@ -26,6 +26,18 @@ public class Libro {
         return categoria;
     }
 
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public void setAutor(String autor) {
+        this.autor = autor;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
     public boolean isDisponible() {
         return disponible;
     }

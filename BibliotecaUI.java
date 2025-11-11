@@ -54,7 +54,7 @@ public class BibliotecaUI {
                 String autor = sc.nextLine();
                 System.out.print("Nueva Categoria: ");
                 String categoria = sc.nextLine();
-                if (!bib.updateBook(titulo, autor, categoria))
+                if (!bib.actualizarLibro(titulo, autor, categoria))
                     System.out.println("Libro no encontrado.");
             } else if ("3".equals(o)) {
                 System.out.print("Titulo a eliminar: ");
@@ -70,7 +70,7 @@ public class BibliotecaUI {
         }
     }
 
-    private static usuariosMenu(Scanner sc, Biblioteca bib) {
+    private static void usuariosMenu(Scanner sc, Biblioteca bib) {
         boolean regresar = false;
         while (!regresar) {
             System.out.println("\n-- Usuario --");

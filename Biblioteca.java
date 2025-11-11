@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.Iterator;
+
+
 public class Biblioteca {
 
 
@@ -45,7 +49,7 @@ public class Biblioteca {
     }
 
     public boolean actualizarLibro(String nuevoTitulo, String nuevoAutor, String nuevaCategoria) {
-        Libro l = buscarLibro(titulo);
+        Libro l = buscarLibro(nuevoTitulo);
         if (l == null)
             return false;
         String antiguoTitulo = l.getTitulo();
