@@ -52,13 +52,11 @@ public class Biblioteca {
         Libro l = buscarLibro(nuevoTitulo);
         if (l == null)
             return false;
-        String antiguoTitulo = l.getTitulo();
-        String antiguoAutor = l.getAutor();
-        String antiguaCategoria = l.getCategoria();
-
+       
         l.setTitulo(nuevoTitulo);
         l.setAutor(nuevoAutor);
         l.setCategoria(nuevaCategoria);
+        return true;
 
     }
 
@@ -82,7 +80,7 @@ public class Biblioteca {
     }
 
     // ===== USUARIOS =====
-    public Usuario (String id) {
+    public Usuario buscUsuario(String id) {
         for (int i = 0; i < usuarios.size(); i++) {
             if (usuarios.get(i).getId().equals(id))
                 return usuarios.get(i);
