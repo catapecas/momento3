@@ -44,9 +44,11 @@ public class BibliotecaUI {
                 String titulo = sc.nextLine();
                 System.out.print("Autor: ");
                 String autor = sc.nextLine();
+                System.out.print("ISBN: ");
+                String isbn = sc.nextLine();
                 System.out.print("Categoria: ");
                 String categoria = sc.nextLine();
-                bib.agregarLibro(new Libro(titulo, autor, categoria));
+                bib.agregarLibro(new Libro(titulo, autor, isbn, categoria));
             } else if ("2".equals(o)) {
                 System.out.print("Nuevo titulo: ");
                 String titulo = sc.nextLine();

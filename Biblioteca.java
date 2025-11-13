@@ -7,7 +7,12 @@ public class Biblioteca {
 
     private ArrayList<Libro> libros = new ArrayList<Libro>();
     private ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
-    
+    ArrayList<Libro> respaldo = new ArrayList<>();
+
+    public void guardarEstado() {
+        // Copia superficial de la lista (suficiente para una versión simple)
+        respaldo = new ArrayList<>(libros);
+    }
 
     // ===== LIBROS =====
     public Libro buscarLibro(String titulo) {
