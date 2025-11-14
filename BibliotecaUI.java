@@ -40,16 +40,18 @@ public class BibliotecaUI {
             String o = sc.nextLine();
 
             if ("1".equals(o)) {
+                String autor = sc.nextLine();
+                System.out.print("ISBN: ");
                 System.out.print("Titulo: ");
                 String titulo = sc.nextLine();
                 System.out.print("Autor: ");
-                String autor = sc.nextLine();
-                System.out.print("ISBN: ");
                 String isbn = sc.nextLine();
                 System.out.print("Categoria: ");
                 String categoria = sc.nextLine();
-                bib.agregarLibro(new Libro(titulo, autor, isbn, categoria));
+                bib.agregarLibro(new Libro(isbn, titulo, autor,categoria));
+
             } else if ("2".equals(o)) {
+                System.out.println("Nuevo isbn del libro a actualizar: ");
                 System.out.print("Nuevo titulo: ");
                 String titulo = sc.nextLine();
                 System.out.print("Nuevo Autor: ");
@@ -58,6 +60,7 @@ public class BibliotecaUI {
                 String categoria = sc.nextLine();
                 if (!bib.actualizarLibro(titulo, autor, categoria))
                     System.out.println("Libro no encontrado.");
+
             } else if ("3".equals(o)) {
                 System.out.print("Titulo a eliminar: ");
                 String titulo = sc.nextLine();
