@@ -1,17 +1,20 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 
-
 public class Biblioteca {
-
 
     private ArrayList<Libro> libros = new ArrayList<Libro>();
     private ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
-    ArrayList<Libro> respaldo = new ArrayList<>();
-
-    public void guardarEstado() {
+    ArrayList<Libro> respaldoLibros = new ArrayList<>();
+    ArrayList<Usuario> respaldoUsuarios = new ArrayList<>();
+    
+    public void guardarEstadoLibros() {
         // Copia superficial de la lista (suficiente para una versión simple)
-        respaldo = new ArrayList<>(libros);
+        respaldoLibros = new ArrayList<>(libros);
+    }
+     public void guardarEstadoUsuarios() {
+        // Copia superficial de la lista (suficiente para una versión simple)
+        respaldoUsuarios = new ArrayList<>(usuarios);
     }
 
     // ===== LIBROS =====
@@ -34,10 +37,8 @@ public class Biblioteca {
         return false;
     }
 
-   
-
-
     public void agregarLibro(Libro l) {
+        guardarEstadoLibros();
         libros.add(l);
         //comprobar si existe ya?
         if (buscarLibro(l.getTitulo()) != null) {
@@ -57,18 +58,18 @@ public class Biblioteca {
         Libro l = buscarLibro(nuevoTitulo);
         if (l == null)
             return false;
-       
+        guardarEstadoLibros();
         l.setTitulo(nuevoTitulo);
         l.setAutor(nuevoAutor);
         l.setCategoria(nuevaCategoria);
         return true;
-
     }
 
     public boolean eliminarLibro(String titulo) {
         for (int i = 0; i < libros.size(); i++) {
             Libro l = libros.get(i);
             if (l.getTitulo().equals(titulo)) {
+                guardarEstadoLibros();
                 libros.remove(i);
                 return true;
             }
@@ -84,6 +85,18 @@ public class Biblioteca {
         }
     }
 
+    public void deshacerLibros() {
+        // Regresa al estado anterior
+        libros = new ArrayList<>(respaldoLibros);
+        System.out.println("Último cambio deshecho.");
+    }
+
+     public void deshacerUsuarios() {
+        // Regresa al estado anterior
+        usuarios = new ArrayList<>(respaldoUsuarios);
+        System.out.println("Último cambio deshecho.");
+    }
+
     // ===== USUARIOS =====
     public Usuario buscUsuario(String id) {
         for (int i = 0; i < usuarios.size(); i++) {
@@ -94,6 +107,7 @@ public class Biblioteca {
     }
 
     public void registrarUsuarios(Usuario u) {
+        guardarEstadoUsuarios();
         usuarios.add(u);
         
     }
@@ -102,6 +116,7 @@ public class Biblioteca {
         for (int i = 0; i < usuarios.size(); i++) {
             Usuario u = usuarios.get(i);
             if (u.getId().equals(id)) {
+                guardarEstadoUsuarios();
                 usuarios.remove(i);  
                 return true;
             }

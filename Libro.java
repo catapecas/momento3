@@ -2,26 +2,21 @@
 public class Libro {
     private String titulo;
     private String autor;
-    private String isbn;
     private String categoria;
     private boolean disponible;
 
 
 // constructor inicializa  nombre de la clase
-    public Libro(String titulo, String autor,String isbn, String categoria) { 
+    public Libro(String titulo, String autor,String categoria) { 
         this.titulo = titulo;
         this.autor = autor;
-        this.isbn = isbn;
         this.categoria = categoria;
         this.disponible = true; // cuando se crea un libro esta disponible
 
     }
 
     // firma metodo publico ,retorna String, no recibe parametro tipo String     
-    public String getIsbn() {
-        return isbn;
-    }
-
+ 
     public String getTitulo() {
         return titulo;
     }
@@ -37,9 +32,6 @@ public class Libro {
 
     
     // firma metodo publico , no retorna nada, recibe un parametro tipo String   
-    public void setIsbn(String isbn) { 
-        this.isbn = isbn;
-    }
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
@@ -64,7 +56,7 @@ public class Libro {
     */
      @Override
     public String toString() {
-        return "Libro [" + "isbn=" + isbn + ",titulo=" + titulo + ", autor=" + autor + ", categoria=" + categoria + ", disponible=" + disponible + ']';
+        return "Libro [titulo=" + titulo + ", autor=" + autor + ", categoria=" + categoria + ", disponible=" + disponible + ']';
     }
 
 }

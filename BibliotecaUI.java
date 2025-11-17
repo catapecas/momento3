@@ -35,30 +35,28 @@ public class BibliotecaUI {
             System.out.println("2) Actualizar");
             System.out.println("3) Eliminar");
             System.out.println("4) Listar");
+            System.out.println("5) Deshacer último cambio");
             System.out.println("0) Regresar");
             System.out.print("Elegir opción : ");
             String o = sc.nextLine();
 
             if ("1".equals(o)) {
-                String autor = sc.nextLine();
-                System.out.print("ISBN: ");
                 System.out.print("Titulo: ");
                 String titulo = sc.nextLine();
                 System.out.print("Autor: ");
-                String isbn = sc.nextLine();
+                String autor = sc.nextLine();
                 System.out.print("Categoria: ");
                 String categoria = sc.nextLine();
-                bib.agregarLibro(new Libro(isbn, titulo, autor,categoria));
+                bib.agregarLibro(new Libro( titulo,autor,categoria));
 
             } else if ("2".equals(o)) {
-                System.out.println("Nuevo isbn del libro a actualizar: ");
                 System.out.print("Nuevo titulo: ");
                 String titulo = sc.nextLine();
                 System.out.print("Nuevo Autor: ");
                 String autor = sc.nextLine();
                 System.out.print("Nueva Categoria: ");
                 String categoria = sc.nextLine();
-                if (!bib.actualizarLibro(titulo, autor, categoria))
+                if (!bib.actualizarLibro( titulo, autor, categoria))
                     System.out.println("Libro no encontrado.");
 
             } else if ("3".equals(o)) {
@@ -68,6 +66,8 @@ public class BibliotecaUI {
                     System.out.println("Libro no encontrado.");
             } else if ("4".equals(o)) {
                 bib.listarLibros();
+            } else if ("5".equals(o)) {
+                bib.deshacerLibros();
             } else if ("0".equals(o))
                 regresar = true;
             else
@@ -99,6 +99,8 @@ public class BibliotecaUI {
                     System.out.println("Usuario no encontrado.");
             } else if ("3".equals(o)) {
                 bib.listarUsuarios();
+            } else if ("4".equals(o)) {
+                bib.deshacerUsuarios();
             } else if ("0".equals(o))
                 regresar = true;
             else
