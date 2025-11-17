@@ -74,7 +74,7 @@ public class BibliotecaUI {
                 System.out.println("Opción inválida.");
         }
     }
-
+               //usuariosMenu
     private static void usuariosMenu(Scanner sc, Biblioteca bib) {
         boolean regresar = false;
         while (!regresar) {
@@ -82,6 +82,7 @@ public class BibliotecaUI {
             System.out.println("1) Registrar");
             System.out.println("2) Eliminar");
             System.out.println("3) Listar");
+             System.out.println("4) Deshacer último cambio");
             System.out.println("0) Regresar");
             System.out.print("Elegir una opción: ");
             String o = sc.nextLine();
