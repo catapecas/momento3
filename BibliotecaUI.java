@@ -10,6 +10,7 @@ public class BibliotecaUI {
             System.out.println("\n==== Menú Biblioteca ====");
             System.out.println("1) Libros");
             System.out.println("2) Usuarios");
+            System.out.println("3) Préstamos");
             System.out.println("0) Salir");
             System.out.print("Elegir una opción: ");
             String opt = sc.nextLine();
@@ -18,6 +19,8 @@ public class BibliotecaUI {
                 librosMenu(sc, bib);
             else if ("2".equals(opt))
                 usuariosMenu(sc, bib);
+            else if ("3".equals(opt))
+                prestarMenu(sc, bib);
             else if ("0".equals(opt))
                 ejecutar = false;
             else
@@ -108,5 +111,39 @@ public class BibliotecaUI {
                 System.out.println("opcion inválida.");
         }
     }
+      // prestarMenu
+    private static void prestarMenu(Scanner sc, Biblioteca bib) {
+        boolean regresar = false;
+        while (!regresar) {
+            System.out.println("\n-- Préstamos --");
+            System.out.println("1) Prestar Libro");
+            System.out.println("2) Devolver Libro");
+            System.out.println("3) Deshacer último cambio");
+            System.out.println("0) Regresar");
+            System.out.print("Elegir una opción: ");
+            String o = sc.nextLine();
+
+             if ("1".equals(o)) {
+                System.out.print("ID Usuario: ");
+                String idUsuario = sc.nextLine();
+                System.out.print("Título del Libro: ");
+                String tituloLibro = sc.nextLine();
+                bib.prestarLibro(idUsuario, tituloLibro);
+            } else if ("2".equals(o)) {
+                System.out.print("ID Usuario: ");
+                String idUsuario = sc.nextLine();
+                System.out.print("Título del Libro: ");
+                String tituloLibro = sc.nextLine();
+                bib.devolverLibro(idUsuario, tituloLibro);
+            } else if ("3".equals(o)) {
+                bib.deshacerUltimaAccion();
+            } else if ("0".equals(o))
+                regresar = true;
+            else
+                System.out.println("Opción inválida.");
+        }
+    }
+
+
 
 }

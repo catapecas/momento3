@@ -5,8 +5,10 @@ public class Biblioteca {
 
     private ArrayList<Libro> libros = new ArrayList<Libro>();
     private ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+    private ArrayList<Prestamos> prestamos = new ArrayList<Prestamos>();
     ArrayList<Libro> respaldoLibros = new ArrayList<>();
     ArrayList<Usuario> respaldoUsuarios = new ArrayList<>();
+    ArrayList<Prestamos> respaldoPrestamos = new ArrayList<>();
     
     public void guardarEstadoLibros() {
         // Copia superficial de la lista (suficiente para una versión simple)
@@ -16,6 +18,9 @@ public class Biblioteca {
         // Copia superficial de la lista (suficiente para una versión simple)
         respaldoUsuarios = new ArrayList<>(usuarios);
     }
+        public void guardarEstadoPrestamos() {
+            respaldoPrestamos = new ArrayList<>(prestamos);
+        }
 
     // ===== LIBROS =====
     public Libro buscarLibro(String titulo) {
@@ -97,8 +102,8 @@ public class Biblioteca {
         System.out.println("Último cambio deshecho.");
     }
 
-    // ===== USUARIOS =====
-    public Usuario buscUsuario(String id) {
+           // ===== USUARIOS =====
+    public Usuario buscarUsuario(String id) {
         for (int i = 0; i < usuarios.size(); i++) {
             if (usuarios.get(i).getId().equals(id))
                 return usuarios.get(i);
@@ -125,12 +130,67 @@ public class Biblioteca {
     }
 
     public void listarUsuarios() {
-        System.out.println("=== Usuarios ===");
+        System.out.println("Usuarios ");
         Iterator<Usuario> it = usuarios.iterator();
         while (it.hasNext())
             System.out.println(it.next());
     }
 
+    // ===== PRESTAMOS =====
+
+    public boolean prestarLibro(String idUsuario, String tituloLibro) {
+     guardarEstadoLibros();
+     guardarEstadoUsuarios();
+
+            Usuario usuario = buscarUsuario(idUsuario);
+            Libro l = buscarLibro(tituloLibro);
+            if(usuario == null){
+                System.out.println("Usuario no encontrado.");
+                return false;   
+            }
+            if (l == null) {
+                System.out.println("Libro no encontrado.");
+                return false;
+            }
+            if (!l.isDisponible()) {
+                System.out.println("Libro no disponible.");
+                return false;
+            }
+            l.setDisponible(false);
+            usuario.agregarLibroPrestado(l);
+            System.out.println("Libro prestado exitosamente.");
+            return true;
+        }
+        public boolean devolverLibro(String idUsuario, String tituloLibro) {
+         guardarEstadoLibros();
+         guardarEstadoUsuarios(); 
+
+            Usuario usuario = buscarUsuario(idUsuario);
+            Libro l = buscarLibro(tituloLibro);
+
+            if (usuario == null) {
+                System.out.println("Usuario no encontrado.");
+                return false;
+            }
+            if (l == null) {
+                System.out.println("Libro no encontrado.");
+                return false;
+            }
+            if(usuario.removerLibroPrestado(tituloLibro)){
+                l.setDisponible(true);
+                System.out.println("Libro devuelto exitosamente.");
+                return true;
+            } else {
+                System.out.println("El usuario no tiene este libro prestado.");
+                return false;
+            }
+        }
+
+    public void deshacerUltimaAccion() {
+        deshacerLibros();
+        deshacerUsuarios();
+        System.out.println("Último cambio deshecho."); 
+    }
 }
 
  
